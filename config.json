@@ -9,9 +9,9 @@
     "save_probes": true,
     "repeat_each": 10,
     "probes_dir": "probes",
-    "layers_to_use": [-1, -4, -6, -8],
+    "layers_to_use": [-1, -5, -9, -13, -17],
     "layer": -4,
-    "list_of_datasets": ["facts", "elements"],
+    "list_of_datasets": ["cities", "companies", "inventions", "animals", "facts", "elements"],
     "dataset_path": "datasets",
     "processed_dataset_path": "processed_datasets",
     "true_false": true,
@@ -20,4 +20,3 @@
     "gen_predictions_layer": -4,
     "suffix_list": ["cities_rp", "facts_rp"]
   }
-  

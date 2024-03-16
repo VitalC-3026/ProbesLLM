@@ -273,6 +273,45 @@ class CCS(object):
 
         return best_loss
 
+
+def prepare_datasets(datasets, dataset_names, test_first_only):
+    """
+    Prepares train and test datasets from a list of datasets.
+
+    Arguments:
+    datasets -- A list of pandas dataframes, where each dataframe is a separate dataset.
+    dataset_names -- A list of strings, where each string is the name of a dataset corresponding to the 'datasets' list.
+    test_first_only -- A boolean. If true, only the first dataset in 'datasets' is used as the test set, 
+                          and the rest are used for training. If false, each dataset is used as the test set one-by-one, 
+                          while the rest are used for training.
+
+    Raises:
+    ValueError -- If 'datasets' or 'dataset_names' is empty, or if they do not have the same length.
+    Returns:
+    train_datasets -- A list of pandas dataframes, where each dataframe is a training dataset.
+    test_datasets -- A list of pandas dataframes, where each dataframe is a testing dataset.
+    """
+
+    if not datasets or not dataset_names:
+        raise ValueError("Both 'datasets' and 'dataset_names' must be nonempty.")
+    if len(datasets) != len(dataset_names):
+        raise ValueError("'datasets' and 'dataset_names' must have the same length.")
+    train_datasets = []
+    test_datasets = []
+    dataset_loop_length = 1 if test_first_only else len(dataset_names)
+    for ds in range(dataset_loop_length):
+        if test_first_only:
+            test_df = datasets[0]
+            dfs_to_concatenate = datasets[1:]  
+        else:
+            test_df = datasets[ds]
+            dfs_to_concatenate = datasets[:ds] + datasets[ds + 1:]
+        train_df = pd.concat(dfs_to_concatenate, ignore_index=True)
+        train_datasets.append(train_df)
+        test_datasets.append(test_df)
+    return train_datasets, test_datasets
+
+
 def main():
 
     try:
@@ -302,77 +341,87 @@ def main():
         dataset_path = dataset_dir / dataset_file  # Combine directory and file name
         df = load_csv(dataset_path)
         dataframes.append(df)
-
-    # Combine data and get embeddings
-    combined_data = pd.concat(dataframes)
-    all_neg_hs, all_pos_hs, all_labels = get_embeddings(combined_data)
-
-    # Shuffle the data
-    data_size = len(all_labels)
-    # shuffled_indices = np.random.permutation(data_size)
-    # all_neg_hs = [all_neg_hs[i] for i in shuffled_indices]
-    # all_pos_hs = [all_pos_hs[i] for i in shuffled_indices]
-    # all_labels = [all_labels[i] for i in shuffled_indices]
-
-
-    # Split data into train and test
-    train_ratio = 0.8
-    train_size = int(train_ratio * len(all_labels))  # Size of the training set
-
-    neg_hs_train, neg_hs_test = all_neg_hs[:train_size], all_neg_hs[train_size:]
-    pos_hs_train, pos_hs_test = all_pos_hs[:train_size], all_pos_hs[train_size:]
-    y_test = all_labels[train_size:]
-
-    # Prepare data for MLP
-    pos_embeddings_train, neg_embeddings_train = prepare_data_for_mlp(pos_hs_train, neg_hs_train)
-    pos_embeddings_test, neg_embeddings_test = prepare_data_for_mlp(pos_hs_test, neg_hs_test)
-
-    #Capture means and stds of training data to save later
-    pos_mean = pos_embeddings_train.numpy().mean(axis=0)
-    neg_mean = neg_embeddings_train.numpy().mean(axis=0)
-    pos_std = pos_embeddings_train.numpy().std(axis=0)
-    neg_std = neg_embeddings_train.numpy().std(axis=0)
-
-
-    # Initialize the CCS with the embeddings from positive and negative statements
-    ccs = CCS(pos_embeddings_train.numpy(), neg_embeddings_train.numpy(), nepochs=1000, ntries=10, lr=1e-3)
-
-    # Train the CCS
-    best_loss = ccs.repeated_train()
-    print(f"Best loss achieved after training: {best_loss}")
-
-    pos_embeddings_test_np = pos_embeddings_test.numpy()
-    neg_embeddings_test_np = neg_embeddings_test.numpy()
-    raw_acc = ccs.get_raw_acc(pos_embeddings_test_np, neg_embeddings_test_np, y_test)
-    if raw_acc < .5:
-        reverse_predictions = True
-    else:
-        reverse_predictions = False
     
-    for df, dataset_file in zip(dataframes, dataset_names):
-        output_filename = dataset_file.rsplit('.', 1)[0] + "CSSpreds.csv"  # Modify the file name
+    # leave-out one category as the testset
+    train_datasets, test_datasets = prepare_datasets(dataframes, dataset_names, False)
+
+    for count, (train_dataset, test_dataset, test_dataset_name) in enumerate(zip(train_datasets, test_datasets, dataset_names)):
+        logger.info(f'Probe CCS: {test_dataset_name}')
+        # Combine data and get embeddings
+        # train_combined_data = pd.concat(train_dataset)
+        train_neg_hs, train_pos_hs, train_labels = get_embeddings(train_dataset)
+        # test_combined_data = pd.concat(test_dataset)
+        test_neg_hs, test_pos_hs, test_labels = get_embeddings(test_dataset)
+
+        # # Shuffle the data
+        # data_size = len(all_labels)
+        # # shuffled_indices = np.random.permutation(data_size)
+        # # all_neg_hs = [all_neg_hs[i] for i in shuffled_indices]
+        # # all_pos_hs = [all_pos_hs[i] for i in shuffled_indices]
+        # # all_labels = [all_labels[i] for i in shuffled_indices]
+
+
+        # # Split data into train and test
+        # train_ratio = 0.8
+        # train_size = int(train_ratio * len(all_labels))  # Size of the training set
+
+        # neg_hs_train, neg_hs_test = all_neg_hs[:train_size], all_neg_hs[train_size:]
+        # pos_hs_train, pos_hs_test = all_pos_hs[:train_size], all_pos_hs[train_size:]
+        # y_test = all_labels[train_size:]
+        neg_hs_train, neg_hs_test = train_neg_hs, test_neg_hs
+        pos_hs_train, pos_hs_test = train_pos_hs, test_pos_hs
+        y_test = test_labels
+
+        # Prepare data for MLP
+        pos_embeddings_train, neg_embeddings_train = prepare_data_for_mlp(pos_hs_train, neg_hs_train)
+        pos_embeddings_test, neg_embeddings_test = prepare_data_for_mlp(pos_hs_test, neg_hs_test)
+
+        #Capture means and stds of training data to save later
+        pos_mean = pos_embeddings_train.numpy().mean(axis=0)
+        neg_mean = neg_embeddings_train.numpy().mean(axis=0)
+        pos_std = pos_embeddings_train.numpy().std(axis=0)
+        neg_std = neg_embeddings_train.numpy().std(axis=0)
+
+
+        # Initialize the CCS with the embeddings from positive and negative statements
+        ccs = CCS(pos_embeddings_train.numpy(), neg_embeddings_train.numpy(), nepochs=1000, ntries=10, lr=1e-3)
+
+        # Train the CCS
+        best_loss = ccs.repeated_train()
+        print(f"Best loss achieved after training for {test_dataset_name}: {best_loss}")
+
+        pos_embeddings_test_np = pos_embeddings_test.numpy()
+        neg_embeddings_test_np = neg_embeddings_test.numpy()
+        raw_acc = ccs.get_raw_acc(pos_embeddings_test_np, neg_embeddings_test_np, y_test)
+        if raw_acc < .5:
+            reverse_predictions = True
+        else:
+            reverse_predictions = False
+        
+        # for df, dataset_file in zip(dataframes, dataset_names):
+        output_filename = test_dataset_name.rsplit('.', 1)[0] + "_CSSpreds.csv"  # Modify the file name
         output_path_name = output_path / output_filename  # Combine directory and file name
-        record_predictions(ccs.best_probe, df, output_path_name, pos_mean, pos_std, neg_mean, neg_std, reverse_predictions)
+        record_predictions(ccs.best_probe, test_dataset, output_path_name, pos_mean, pos_std, neg_mean, neg_std, reverse_predictions)
 
-    # Test accuracy
-    ccs_acc = ccs.get_acc(pos_embeddings_test_np, neg_embeddings_test_np, y_test)
-    print("CCS accuracy: {}".format(ccs_acc))
+        # Test accuracy
+        ccs_acc = ccs.get_acc(pos_embeddings_test_np, neg_embeddings_test_np, y_test)
+        print("CCS accuracy for {}: {}".format(test_dataset_name, ccs_acc))
 
-    # Save mean and std to a file
-    # Save the normalization parameters
-    layer = str(abs(layer))
-    suffix = ""
-    if rmv_period:
-        suffix = "rp"
-    if not os.path.exists(probes_dir):
-        os.makedirs(probes_dir)
-    normalization_params_filename = f"norm_params_{llm_name}_{layer}_{suffix}.npz"
-    normalization_params_path = probes_dir / normalization_params_filename  # Combine directory and file name
-    np.savez(normalization_params_path, pos_mean=pos_mean, neg_mean=neg_mean, pos_std=pos_std,
-             neg_std=neg_std, reverse_predictions=reverse_predictions)
+        # Save mean and std to a file
+        # Save the normalization parameters
+        layer = str(layer)
+        suffix = ""
+        if rmv_period:
+            suffix = "rp"
+        if not os.path.exists(probes_dir):
+            os.makedirs(probes_dir)
+        normalization_params_filename = f"norm_params_{test_dataset_name}_{llm_name}_{layer}_{suffix}.npz"
+        normalization_params_path = probes_dir / normalization_params_filename  # Combine directory and file name
+        np.savez(normalization_params_path, pos_mean=pos_mean, neg_mean=neg_mean, pos_std=pos_std,
+                neg_std=neg_std, reverse_predictions=reverse_predictions)
 
-    # Save the best probe 
-    save_model(ccs.best_probe, probes_dir /f"CCSprobe_{llm_name}_{layer}_{suffix}.pth")
+        # Save the best probe 
+        save_model(ccs.best_probe, probes_dir /f"CCSprobe_{test_dataset_name}_{llm_name}_{layer}_{suffix}.pth")
 
 
 

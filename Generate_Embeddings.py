@@ -45,6 +45,8 @@ def init_model(model_name: str):
     try:
         model = OPTForCausalLM.from_pretrained("facebook/opt-"+model_name)
         tokenizer = AutoTokenizer.from_pretrained("facebook/opt-"+model_name)
+        # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        # model.to(device)
     except Exception as e:
         print(f"An error occurred when initializing the model: {str(e)}")
         return None, None
@@ -96,6 +98,24 @@ def process_batch(batch_prompts: List[str], model, tokenizer, layers_to_use: lis
     model.eval()
     with torch.no_grad():
         outputs = model(**inputs, output_hidden_states=True, return_dict=True) 
+    
+    # print(f"=======DEBUG=======")
+    # print(f"layers num: {len(outputs.hidden_states)}")
+    # print(f"first layer shape: {outputs.hidden_states[0].shape}")
+    # print(f"second layer shape: {outputs.hidden_states[1].shape}")
+    # print(f"last layer shape: {outputs.hidden_states[-1].shape}")
+    
+    # config = model.config
+
+    # # Now you can print the entire configuration or access specific attributes
+
+    # # Example: Access specific configuration attributes
+    # print("number of layers:", config.num_hidden_layers)
+    # print("hidden size:", config.hidden_size)
+    # print("vocabulary size:", config.vocab_size)
+    # print(torch.sum(outputs.hidden_states[28] != outputs.hidden_states[-5]))
+    # print(f"=======DEBUG=======")
+    # return
 
     # Use the attention mask to find the index of the last real token for each sequence
     seq_lengths = inputs.attention_mask.sum(dim=1) - 1  # Subtract 1 to get the index
@@ -180,6 +200,7 @@ def main():
     if model is None or tokenizer is None:
         logging.error("Model or tokenizer initialization failed.")
         return
+
     #I've left this in in case there's an issue with the batch_processing fanciness
     # for dataset_name in tqdm(dataset_names, desc="Processing datasets"):
     #     dataset = load_data(dataset_path, dataset_name, true_false=true_false)
