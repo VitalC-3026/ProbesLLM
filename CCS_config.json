@@ -1,7 +1,7 @@
 {
-    "datasets": ["embeddings_animals6.7b_1_rmv_period.csv", "embeddings_companies6.7b_1_rmv_period.csv",
-                 "embeddings_elements6.7b_1_rmv_period.csv", "embeddings_facts6.7b_1_rmv_period.csv",
-                 "embeddings_inventions6.7b_1_rmv_period.csv", "embeddings_cities6.7b_1_rmv_period.csv"],
+    "datasets": ["embeddings_animals6.7b_17_rmv_period.csv", "embeddings_cities6.7b_17_rmv_period.csv",
+                 "embeddings_companies6.7b_17_rmv_period.csv", "embeddings_elements6.7b_17_rmv_period.csv",
+                 "embeddings_facts6.7b_17_rmv_period.csv", "embeddings_inventions6.7b_17_rmv_period.csv"],
     "processed_dataset_dir": "processed_datasets",
     "probes_dir": "probes",
     "csv_save_path": "processed_datasets",

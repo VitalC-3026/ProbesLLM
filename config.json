@@ -11,7 +11,7 @@
     "probes_dir": "probes",
     "layers_to_use": [-1, -5, -9, -13, -17],
     "layer": -1,
-    "list_of_datasets": ["animals", "cities", "companies", "elements", "facts", "inventions"],
+    "list_of_datasets": ["capitals"],
     "dataset_path": "datasets",
     "processed_dataset_path": "processed_datasets",
     "true_false": true,
