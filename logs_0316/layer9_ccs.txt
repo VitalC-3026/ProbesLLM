@@ -1,0 +1,98 @@
+2024-03-17 02:14:30,635 - __main__ - INFO - Saving dataframe with predictions to CCS_eval.log
+2024-03-17 02:14:30,636 - __main__ - INFO - Excecution started.
+2024-03-17 02:17:23,779 - __main__ - INFO - Probe CCS: embeddings_animals6.7b_1_rmv_period.csv
+Getting embeddings:   0%|          | 0/6809 [00:00<?, ?it/s]Getting embeddings:   6%|▌         | 411/6809 [00:00<00:01, 4102.18it/s]Getting embeddings:  12%|█▏        | 837/6809 [00:00<00:01, 4194.67it/s]Getting embeddings:  19%|█▊        | 1262/6809 [00:00<00:01, 4218.42it/s]Getting embeddings:  25%|██▍       | 1686/6809 [00:00<00:01, 4224.02it/s]Getting embeddings:  31%|███       | 2111/6809 [00:00<00:01, 4231.22it/s]Getting embeddings:  37%|███▋      | 2536/6809 [00:00<00:01, 4237.25it/s]Getting embeddings:  43%|████▎     | 2961/6809 [00:00<00:00, 4238.88it/s]Getting embeddings:  50%|████▉     | 3385/6809 [00:00<00:00, 4237.92it/s]Getting embeddings:  56%|█████▌    | 3809/6809 [00:00<00:00, 4235.16it/s]Getting embeddings:  62%|██████▏   | 4233/6809 [00:01<00:00, 4232.82it/s]Getting embeddings:  68%|██████▊   | 4658/6809 [00:01<00:00, 4236.84it/s]Getting embeddings:  75%|███████▍  | 5082/6809 [00:01<00:00, 4231.49it/s]Getting embeddings:  81%|████████  | 5507/6809 [00:01<00:00, 4235.55it/s]Getting embeddings:  87%|████████▋ | 5931/6809 [00:01<00:00, 4231.63it/s]Getting embeddings:  93%|█████████▎| 6355/6809 [00:01<00:00, 4231.17it/s]Getting embeddings: 100%|█████████▉| 6779/6809 [00:01<00:00, 4229.98it/s]Getting embeddings: 100%|██████████| 6809/6809 [00:01<00:00, 4227.88it/s]
+Getting embeddings:   0%|          | 0/504 [00:00<?, ?it/s]Getting embeddings:  83%|████████▎ | 420/504 [00:00<00:00, 4198.93it/s]Getting embeddings: 100%|██████████| 504/504 [00:00<00:00, 4193.76it/s]
+2024-03-17 02:17:30,601 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:17:30,605 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:17:34,085 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:17:36,628 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:17:39,170 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:17:41,711 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:17:44,252 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:17:46,796 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:17:49,342 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:17:51,886 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:17:54,430 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:02,807 - __main__ - INFO - Probe CCS: embeddings_companies6.7b_1_rmv_period.csv
+Best loss achieved after training for embeddings_animals6.7b_1_rmv_period.csv: 0.03241138905286789
+CCS accuracy for embeddings_animals6.7b_1_rmv_period.csv: 0.5099206349206349
+Getting embeddings:   0%|          | 0/6713 [00:00<?, ?it/s]Getting embeddings:   6%|▋         | 424/6713 [00:00<00:01, 4238.48it/s]Getting embeddings:  13%|█▎        | 848/6713 [00:00<00:01, 4239.17it/s]Getting embeddings:  19%|█▉        | 1272/6713 [00:00<00:01, 4236.58it/s]Getting embeddings:  25%|██▌       | 1698/6713 [00:00<00:01, 4242.51it/s]Getting embeddings:  32%|███▏      | 2123/6713 [00:00<00:01, 4244.20it/s]Getting embeddings:  38%|███▊      | 2548/6713 [00:00<00:00, 4242.55it/s]Getting embeddings:  44%|████▍     | 2973/6713 [00:00<00:00, 4243.98it/s]Getting embeddings:  51%|█████     | 3398/6713 [00:00<00:00, 4240.72it/s]Getting embeddings:  57%|█████▋    | 3823/6713 [00:00<00:00, 4240.50it/s]Getting embeddings:  63%|██████▎   | 4248/6713 [00:01<00:00, 4240.35it/s]Getting embeddings:  70%|██████▉   | 4674/6713 [00:01<00:00, 4243.27it/s]Getting embeddings:  76%|███████▌  | 5099/6713 [00:01<00:00, 4243.09it/s]Getting embeddings:  82%|████████▏ | 5524/6713 [00:01<00:00, 4242.89it/s]Getting embeddings:  89%|████████▊ | 5949/6713 [00:01<00:00, 4242.63it/s]Getting embeddings:  95%|█████████▍| 6374/6713 [00:01<00:00, 4243.64it/s]Getting embeddings: 100%|██████████| 6713/6713 [00:01<00:00, 4242.29it/s]
+Getting embeddings:   0%|          | 0/600 [00:00<?, ?it/s]Getting embeddings:  70%|███████   | 420/600 [00:00<00:00, 4190.29it/s]Getting embeddings: 100%|██████████| 600/600 [00:00<00:00, 4199.48it/s]
+2024-03-17 02:18:09,422 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:09,427 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:11,934 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:14,435 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:16,948 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:19,460 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:21,973 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:24,483 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:26,996 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:29,510 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:32,022 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:41,348 - __main__ - INFO - Probe CCS: embeddings_elements6.7b_1_rmv_period.csv
+Best loss achieved after training for embeddings_companies6.7b_1_rmv_period.csv: 0.0360986590385437
+CCS accuracy for embeddings_companies6.7b_1_rmv_period.csv: 0.525
+Getting embeddings:   0%|          | 0/6848 [00:00<?, ?it/s]Getting embeddings:   6%|▌         | 420/6848 [00:00<00:01, 4198.57it/s]Getting embeddings:  12%|█▏        | 842/6848 [00:00<00:01, 4209.15it/s]Getting embeddings:  18%|█▊        | 1264/6848 [00:00<00:01, 4213.77it/s]Getting embeddings:  25%|██▍       | 1687/6848 [00:00<00:01, 4219.93it/s]Getting embeddings:  31%|███       | 2109/6848 [00:00<00:01, 4217.40it/s]Getting embeddings:  37%|███▋      | 2533/6848 [00:00<00:01, 4222.68it/s]Getting embeddings:  43%|████▎     | 2957/6848 [00:00<00:00, 4227.50it/s]Getting embeddings:  49%|████▉     | 3382/6848 [00:00<00:00, 4234.26it/s]Getting embeddings:  56%|█████▌    | 3806/6848 [00:00<00:00, 4225.21it/s]Getting embeddings:  62%|██████▏   | 4229/6848 [00:01<00:00, 4223.91it/s]Getting embeddings:  68%|██████▊   | 4652/6848 [00:01<00:00, 4223.81it/s]Getting embeddings:  74%|███████▍  | 5075/6848 [00:01<00:00, 4224.36it/s]Getting embeddings:  80%|████████  | 5498/6848 [00:01<00:00, 4218.84it/s]Getting embeddings:  86%|████████▋ | 5920/6848 [00:01<00:00, 4217.34it/s]Getting embeddings:  93%|█████████▎| 6343/6848 [00:01<00:00, 4219.67it/s]Getting embeddings:  99%|█████████▉| 6767/6848 [00:01<00:00, 4223.18it/s]Getting embeddings: 100%|██████████| 6848/6848 [00:01<00:00, 4221.09it/s]
+Getting embeddings:   0%|          | 0/465 [00:00<?, ?it/s]Getting embeddings:  90%|█████████ | 419/465 [00:00<00:00, 4182.84it/s]Getting embeddings: 100%|██████████| 465/465 [00:00<00:00, 4175.49it/s]
+2024-03-17 02:18:47,966 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:47,970 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:50,520 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:53,068 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:55,615 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:18:58,163 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:00,712 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:03,260 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:05,808 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:08,354 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:10,902 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:18,691 - __main__ - INFO - Probe CCS: embeddings_facts6.7b_1_rmv_period.csv
+Best loss achieved after training for embeddings_elements6.7b_1_rmv_period.csv: 0.041302137076854706
+CCS accuracy for embeddings_elements6.7b_1_rmv_period.csv: 0.5376344086021505
+Getting embeddings:   0%|          | 0/7007 [00:00<?, ?it/s]Getting embeddings:   6%|▌         | 418/7007 [00:00<00:01, 4177.31it/s]Getting embeddings:  12%|█▏        | 840/7007 [00:00<00:01, 4199.76it/s]Getting embeddings:  18%|█▊        | 1262/7007 [00:00<00:01, 4205.72it/s]Getting embeddings:  24%|██▍       | 1686/7007 [00:00<00:01, 4216.26it/s]Getting embeddings:  30%|███       | 2109/7007 [00:00<00:01, 4216.66it/s]Getting embeddings:  36%|███▌      | 2533/7007 [00:00<00:01, 4223.47it/s]Getting embeddings:  42%|████▏     | 2956/7007 [00:00<00:00, 4224.82it/s]Getting embeddings:  48%|████▊     | 3379/7007 [00:00<00:00, 4220.87it/s]Getting embeddings:  54%|█████▍    | 3802/7007 [00:00<00:00, 4222.05it/s]Getting embeddings:  60%|██████    | 4225/7007 [00:01<00:00, 4220.55it/s]Getting embeddings:  66%|██████▋   | 4648/7007 [00:01<00:00, 4220.51it/s]Getting embeddings:  72%|███████▏  | 5071/7007 [00:01<00:00, 4216.57it/s]Getting embeddings:  78%|███████▊  | 5493/7007 [00:01<00:00, 4215.85it/s]Getting embeddings:  84%|████████▍ | 5916/7007 [00:01<00:00, 4218.75it/s]Getting embeddings:  90%|█████████ | 6340/7007 [00:01<00:00, 4222.93it/s]Getting embeddings:  97%|█████████▋| 6763/7007 [00:01<00:00, 4222.23it/s]Getting embeddings: 100%|██████████| 7007/7007 [00:01<00:00, 4218.52it/s]
+Getting embeddings:   0%|          | 0/306 [00:00<?, ?it/s]Getting embeddings: 100%|██████████| 306/306 [00:00<00:00, 4190.14it/s]
+2024-03-17 02:19:25,316 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:25,321 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:27,909 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:30,495 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:33,079 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:35,667 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:38,254 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:40,840 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:43,424 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:46,004 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:48,584 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:19:54,622 - __main__ - INFO - Probe CCS: embeddings_inventions6.7b_1_rmv_period.csv
+Best loss achieved after training for embeddings_facts6.7b_1_rmv_period.csv: 0.037601836025714874
+CCS accuracy for embeddings_facts6.7b_1_rmv_period.csv: 0.5065359477124183
+Getting embeddings:   0%|          | 0/6875 [00:00<?, ?it/s]Getting embeddings:   6%|▌         | 420/6875 [00:00<00:01, 4192.94it/s]Getting embeddings:  12%|█▏        | 840/6875 [00:00<00:01, 4194.28it/s]Getting embeddings:  18%|█▊        | 1260/6875 [00:00<00:01, 4189.81it/s]Getting embeddings:  24%|██▍       | 1679/6875 [00:00<00:01, 4186.34it/s]Getting embeddings:  31%|███       | 2099/6875 [00:00<00:01, 4190.44it/s]Getting embeddings:  37%|███▋      | 2519/6875 [00:00<00:01, 4192.41it/s]Getting embeddings:  43%|████▎     | 2939/6875 [00:00<00:00, 4188.17it/s]Getting embeddings:  49%|████▉     | 3359/6875 [00:00<00:00, 4191.44it/s]Getting embeddings:  55%|█████▍    | 3780/6875 [00:00<00:00, 4195.92it/s]Getting embeddings:  61%|██████    | 4203/6875 [00:01<00:00, 4204.21it/s]Getting embeddings:  67%|██████▋   | 4625/6875 [00:01<00:00, 4207.20it/s]Getting embeddings:  73%|███████▎  | 5046/6875 [00:01<00:00, 4202.74it/s]Getting embeddings:  80%|███████▉  | 5467/6875 [00:01<00:00, 4201.50it/s]Getting embeddings:  86%|████████▌ | 5888/6875 [00:01<00:00, 4201.87it/s]Getting embeddings:  92%|█████████▏| 6309/6875 [00:01<00:00, 4199.36it/s]Getting embeddings:  98%|█████████▊| 6729/6875 [00:01<00:00, 4197.33it/s]Getting embeddings: 100%|██████████| 6875/6875 [00:01<00:00, 4196.24it/s]
+Getting embeddings:   0%|          | 0/438 [00:00<?, ?it/s]Getting embeddings:  96%|█████████▌| 421/438 [00:00<00:00, 4205.79it/s]Getting embeddings: 100%|██████████| 438/438 [00:00<00:00, 4194.81it/s]
+2024-03-17 02:20:01,253 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:01,258 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:03,813 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:06,368 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:08,916 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:11,465 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:14,013 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:16,561 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:19,110 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:21,658 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:24,207 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:31,741 - __main__ - INFO - Probe CCS: embeddings_cities6.7b_1_rmv_period.csv
+Best loss achieved after training for embeddings_inventions6.7b_1_rmv_period.csv: 0.03286498785018921
+CCS accuracy for embeddings_inventions6.7b_1_rmv_period.csv: 0.5114155251141552
+Getting embeddings:   0%|          | 0/2313 [00:00<?, ?it/s]Getting embeddings:  18%|█▊        | 419/2313 [00:00<00:00, 4188.70it/s]Getting embeddings:  36%|███▌      | 838/2313 [00:00<00:00, 4187.96it/s]Getting embeddings:  54%|█████▍    | 1257/2313 [00:00<00:00, 4188.10it/s]Getting embeddings:  72%|███████▏  | 1676/2313 [00:00<00:00, 4185.13it/s]Getting embeddings:  91%|█████████ | 2095/2313 [00:00<00:00, 4172.91it/s]Getting embeddings: 100%|██████████| 2313/2313 [00:00<00:00, 4169.18it/s]
+Getting embeddings:   0%|          | 0/5000 [00:00<?, ?it/s]Getting embeddings:   8%|▊         | 417/5000 [00:00<00:01, 4161.58it/s]Getting embeddings:  17%|█▋        | 834/5000 [00:00<00:01, 4162.77it/s]Getting embeddings:  25%|██▌       | 1256/5000 [00:00<00:00, 4186.30it/s]Getting embeddings:  34%|███▎      | 1677/5000 [00:00<00:00, 4193.31it/s]Getting embeddings:  42%|████▏     | 2098/5000 [00:00<00:00, 4196.59it/s]Getting embeddings:  50%|█████     | 2520/5000 [00:00<00:00, 4203.86it/s]Getting embeddings:  59%|█████▉    | 2941/5000 [00:00<00:00, 4203.42it/s]Getting embeddings:  67%|██████▋   | 3363/5000 [00:00<00:00, 4207.52it/s]Getting embeddings:  76%|███████▌  | 3784/5000 [00:00<00:00, 4204.18it/s]Getting embeddings:  84%|████████▍ | 4205/5000 [00:01<00:00, 4199.62it/s]Getting embeddings:  93%|█████████▎| 4626/5000 [00:01<00:00, 4201.56it/s]Getting embeddings: 100%|██████████| 5000/5000 [00:01<00:00, 4199.07it/s]
+2024-03-17 02:20:37,943 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:37,948 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:40,127 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:42,349 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:44,536 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:46,617 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:48,688 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:50,775 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:52,846 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:54,933 - __main__ - INFO - Probe initialized and moved to device: cuda
+2024-03-17 02:20:57,009 - __main__ - INFO - Probe initialized and moved to device: cuda
+Best loss achieved after training for embeddings_cities6.7b_1_rmv_period.csv: 0.00015932178939692676
+CCS accuracy for embeddings_cities6.7b_1_rmv_period.csv: 0.5588
