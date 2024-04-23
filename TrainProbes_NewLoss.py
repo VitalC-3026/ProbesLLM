@@ -257,7 +257,7 @@ def evaluate_model(model, test_embeddings, test_labels=None, threshold=0.5, batc
     """
     if test_labels is not None and len(test_embeddings) != len(test_labels):
         raise ValueError("Test embeddings and labels must have the same length.")
-    test_loss, batch_num, test_acc = 0, 0, 0
+    test_loss, batch_num, test_acc, total_num = 0, 0, 0, 0
     predictions = []
     model.eval()
     if test_labels is not None:
@@ -269,10 +269,11 @@ def evaluate_model(model, test_embeddings, test_labels=None, threshold=0.5, batc
                 predictions.append(outputs)
                 loss = get_loss(outputs, labels)
                 test_loss += loss.item()
-                acc = torch.sum((outputs > threshold) == labels)
+                acc = torch.sum((outputs > threshold).reshape(-1) == labels)
                 test_acc += acc
                 batch_num += 1
-        return torch.cat(predictions, dim=0), loss / batch_num, test_acc / batch_num
+                total_num += data.shape[0]
+        return torch.cat(predictions, dim=0), loss / batch_num, test_acc / total_num
     else:
         with torch.no_grad():
             for i in range(0, len(test_embeddings), batch_size):
@@ -484,8 +485,8 @@ def main():
                         model_path = os.path.join(probes_path, f"{model_name}_{abs(layers_to_process[idx])}_{dataset_names[count]}_rp.h5")
                     else:
                         model_path = os.path.join(probes_path, f"{model_name}_{abs(layers_to_process[idx])}_{dataset_names[count]}.h5")
-                    best_model.save(model_path)
-                    torch.save()
+                    # best_model.save(model_path)
+                    torch.save({"model_state_dict": model.state_dict()}, model_path)
                 except Exception as e:
                     logger.error(f"Error saving the model: {e}")
 
