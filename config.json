@@ -11,11 +11,12 @@
     "probes_dir": "probes",
     "layers_to_use": [-1, -5, -9, -13, -17],
     "layer": -1,
-    "list_of_datasets": ["capitals"],
+    "list_of_datasets": ["capitals", "inventions", "elements", "animals", "companies", "facts"],
     "dataset_path": "datasets",
     "processed_dataset_path": "processed_datasets",
     "true_false": true,
     "batch_size": 32,
+    "learning_rate": 0.001,
     "gen_predictions_dataset": "embeddings_companies350m_4_rmv_period",
     "gen_predictions_layer": -1,
     "suffix_list": ["cities_rp", "facts_rp"]
