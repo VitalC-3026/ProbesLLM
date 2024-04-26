@@ -180,9 +180,9 @@ def define_model(input_dim, add_loss=False):
     if not isinstance(input_dim, int) or input_dim <= 0:
         raise ValueError("Input dimension must be a positive integer.")
     model = Sequential()
-    model.add(Dense(256, activation='relu', input_dim=input_dim))
-    model.add(Dense(128, activation='relu'))
+    model.add(Dense(128, activation='relu', input_dim=input_dim))
     model.add(Dense(64, activation='relu'))
+    model.add(Dense(32, activation='relu'))
     model.add(Dense(1, activation='sigmoid'))
 
     def loss_with_aux_data(y_true, y_pred):
@@ -356,14 +356,23 @@ def main():
     parser.add_argument("--add_loss", type=bool, default=False, help="Add unsupervised loss")
     args = parser.parse_args()
 
-    model_name = args.model if args.model is not None else config_parameters["model"]
+    # model_name = args.model if args.model is not None else config_parameters["model"]
+    # should_remove_period = args.remove_period if args.remove_period is not None else config_parameters["remove_period"]
+    # layers_to_process = [int(x) for x in args.layers] if args.layers is not None else config_parameters["layers_to_use"]
+    # dataset_names = args.dataset_names if args.dataset_names is not None else config_parameters["list_of_datasets"]
+    # test_first_only = args.test_first_only if args.test_first_only is not None else config_parameters["test_first_only"]
+    # save_probes = args.save_probes if args.save_probes is not None else config_parameters["save_probes"]
+    # repeat_each = args.repeat_each if args.repeat_each is not None else config_parameters["repeat_each"]
+    # input_path = Path(config_parameters["processed_dataset_path"])
+    # probes_path = Path(config_parameters["probes_dir"])
+    model_name = "_llama-2-7b"
     should_remove_period = args.remove_period if args.remove_period is not None else config_parameters["remove_period"]
-    layers_to_process = [int(x) for x in args.layers] if args.layers is not None else config_parameters["layers_to_use"]
-    dataset_names = args.dataset_names if args.dataset_names is not None else config_parameters["list_of_datasets"]
+    layers_to_process = [-17]
+    dataset_names = ["cities", "inventions", "elements", "animals", "companies", "facts", "conj_neg_facts", "capitals"]
     test_first_only = args.test_first_only if args.test_first_only is not None else config_parameters["test_first_only"]
-    save_probes = args.save_probes if args.save_probes is not None else config_parameters["save_probes"]
-    repeat_each = args.repeat_each if args.repeat_each is not None else config_parameters["repeat_each"]
-    input_path = Path(config_parameters["processed_dataset_path"])
+    save_probes = False
+    repeat_each = 1
+    input_path = Path("llama_probes")
     probes_path = Path(config_parameters["probes_dir"])
     
     

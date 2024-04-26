@@ -194,6 +194,7 @@ def get_loss(preds, labels, add_loss=False):
         consistent_loss = ((pos_preds - (1 - neg_preds)) ** 2).mean(0)
         informative_loss = (torch.min(pos_preds, neg_preds)**2).mean(0)
         loss += consistent_loss + informative_loss
+        # loss += consistent_loss
     return loss
 
 
@@ -397,6 +398,7 @@ def main():
     parser.add_argument("--epochs", type=int, default=100, help="Epochs to train the models")
     parser.add_argument("--batch_size", type=int, default=32, help="batch size for training and evaluation")
     parser.add_argument("--lr", type=float, default=1e-3, help="learning rate")
+    parser.add_argument("--processed_dir", type=str)
     args = parser.parse_args()
 
     model_name = args.model if args.model is not None else config_parameters["model"]
@@ -408,11 +410,12 @@ def main():
     repeat_each = args.repeat_each if args.repeat_each is not None else config_parameters["repeat_each"]
     learning_rate = args.lr if args.lr is not None else config_parameters["learning_rate"]
     batch_size = args.batch_size if args.batch_size is not None else config_parameters["batch_size"]
-    input_path = Path(config_parameters["processed_dataset_path"])
+    input_path = Path(args.processed_dir) if args.processed_dir is not None else Path(config_parameters["processed_dataset_path"])
     probes_path = Path(config_parameters["probes_dir"])
     
     # Iterate over the layers in "layer_num_list"
     for idx in range(len(layers_to_process)):
+        print(f"================layer {layers_to_process[idx]}================")
         # Load the datasets
         datasets, dataset_paths = load_datasets(dataset_names, layers_to_process, should_remove_period, input_path, model_name, idx)
 
@@ -512,8 +515,9 @@ def main():
         if not test_first_only:
             avg_res = print_results(results, dataset_names, repeat_each, layers_to_process[idx])
             overall_res.extend(avg_res)
+        print()
+        print()
 
-        
     logger.info("Execution completed.")
     logger.info("Overall results: " + str(overall_res))
 
